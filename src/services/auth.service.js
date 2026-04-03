@@ -25,6 +25,23 @@ const generateRefreshToken = (payload) => {
     return generateToken(payload, '7d');
 }
 
+// Token Refreshing
+const refreshTokens = async (refreshToken) => {
+    try {
+        const decoded = verifyToken(refreshToken);
+        // check user exists
+        const user = await User.findById(decoded.id);
+        if (!user) {
+            throw new Error('User not found');
+        }
+
+        return generateAccessToken({ id: decoded.id });
+    } catch (error) {
+        throw new Error('Invalid or expired refresh token');
+    }
+}
+
+
 // Token Decoding
 const decodeToken = (token) => {
     try {
@@ -104,6 +121,7 @@ module.exports = {
     generateRefreshToken,
     verifyToken,
     decodeToken,
+    refreshTokens,
     registerUser,
     loginUser
 };

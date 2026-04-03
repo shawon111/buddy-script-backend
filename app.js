@@ -28,10 +28,11 @@ app.use(cors(corsOptions));
 
 // routes
 const authroutes = require('./src/routes/auth.route');
+const authMiddleware = require('./src/middlewares/auth.middleware');
 app.use('/api/auth', authroutes);
 
 // entry route
-app.get('/', (req, res) => {
+app.get('/', authMiddleware, (req, res) => {
     res.status(200).json({
         data: {
             message: 'Welcome to BuddyScript API'
