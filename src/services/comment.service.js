@@ -15,7 +15,7 @@ const saveComment = async (commentData) => {
 
 const pullComments = async (postId, page = 1, limit = 10) => {
     const skip = (page - 1) * limit;
-    const comments = await Comment.find({ post: postId }).populate('author', 'firstName lastName').skip(skip).limit(limit).sort({ createdAt: -1 });
+    const comments = await Comment.find({ post: postId }).populate('author', 'firstName lastName').sort({ createdAt: -1 }).skip(skip).limit(limit).lean();
 
     const maincomments = comments.filter(comment => !comment.parent);
     const replies = comments.filter(comment => comment.parent);
