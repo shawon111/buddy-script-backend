@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
-const postSchema = new mongoose.Schema({
+const commentSchema = new mongoose.Schema({
     post: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Post",
         required: true,
     },
-    user: {
+    author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true,
@@ -35,7 +35,7 @@ const postSchema = new mongoose.Schema({
 
 // indexes
 commentSchema.index({ post: 1, createdAt: -1 });
-commentSchema.index({ user: 1, createdAt: -1 });
+commentSchema.index({ author: 1, createdAt: -1 });
 commentSchema.index({ parent: 1, createdAt: -1 });
 
 // Comment Model
