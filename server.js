@@ -2,8 +2,13 @@ const app = require('./app');
 const dotenv = require('dotenv');
 const database = require('./src/config/database');
 const errorHandler = require('./src/middlewares/error.middleware');
+const cloudinaryConfig = require('./src/config/cloudinary');
+
 // config dotenv
 dotenv.config();
+
+// cloudinary configuration
+cloudinaryConfig();
 
 const port = process.env.PORT || 5000;
 

@@ -31,11 +31,13 @@ const authroutes = require('./src/routes/auth.route');
 const postRoutes = require('./src/routes/post.route');
 const commentRoutes = require('./src/routes/comment.route');
 const reactionRoutes = require('./src/routes/reaction.route');
+const uploadRoutes = require('./src/routes/upload.route');
 
 app.use('/api/auth', authroutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/reactions', reactionRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // entry route
 app.get('/', (req, res) => {
