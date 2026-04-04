@@ -22,7 +22,7 @@ const logger = createLogger({
     format.splat(),
     format.json()
   ),
-  defaultMeta: { service: 'whatsapp-api' },
+  defaultMeta: { service: 'buddyscript' },
   transports: loggerTransports,
 });
 
