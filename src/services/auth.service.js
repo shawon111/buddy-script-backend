@@ -116,6 +116,16 @@ const loginUser = async (email, password) => {
     return userInfo;
 }
 
+// get user 
+const getUserFromToken = async (token) => {
+    const decoded = verifyToken(token);
+    const user = await User.findById(decoded.id).select({ password: 0 });
+    if (!user) {
+        throw new Error('User not found');
+    }
+    return user;
+}
+
 module.exports = {
     generateAccessToken,
     generateRefreshToken,
@@ -123,5 +133,6 @@ module.exports = {
     decodeToken,
     refreshTokens,
     registerUser,
-    loginUser
+    loginUser,
+    getUserFromToken
 };

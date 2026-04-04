@@ -1,4 +1,4 @@
-const { registerUser, loginUser, refreshTokens } = require("../services/auth.service");
+const { registerUser, loginUser, refreshTokens, getUserFromToken } = require("../services/auth.service");
 const catchAsync = require("../utils/catchAsync");
 const responseFn = require("../utils/responseFn");
 const setAuthCookie = require("../utils/setAuthCookie");
@@ -25,6 +25,17 @@ const userLogin = catchAsync(async (req, res) => {
     responseFn(res, 200, true, userInfo.data, "User logged in successfully");
 });
 
+// get user details
+const getUserDetails = catchAsync(async(req,res)=> {
+    const { accessToken } = req?.cookies;
+    if (!accessToken) {
+        responseFn(res, 401, false, null, 'Unauthorized, no access token');
+        return;
+    }
+    const user = await getUserFromToken(accessToken);
+    responseFn(res, 200, true, user, "User details retrieved successfully");
+});
+
 // refresh token
 const refreshAccessToken = catchAsync(async (req, res) => {
     const { refreshToken } = req?.cookies;
@@ -40,5 +51,6 @@ const refreshAccessToken = catchAsync(async (req, res) => {
 module.exports = {
     userRegistration,
     userLogin,
-    refreshAccessToken
+    refreshAccessToken,
+    getUserDetails
 };
