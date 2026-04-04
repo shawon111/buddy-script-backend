@@ -29,8 +29,7 @@ const userLogin = catchAsync(async (req, res) => {
 const getUserDetails = catchAsync(async(req,res)=> {
     const { accessToken } = req?.cookies;
     if (!accessToken) {
-        responseFn(res, 401, false, null, 'Unauthorized, no access token');
-        return;
+        throw new Error('Unauthorized, no access token');
     }
     const user = await getUserFromToken(accessToken);
     responseFn(res, 200, true, user, "User details retrieved successfully");
@@ -40,8 +39,7 @@ const getUserDetails = catchAsync(async(req,res)=> {
 const refreshAccessToken = catchAsync(async (req, res) => {
     const { refreshToken } = req?.cookies;
     if (!refreshToken) {
-        responseFn(res, 401, false, null, 'Unauthorized, no refresh token');
-        return;
+        throw new Error('Unauthorized, no refresh token');
     }
     const newAccessToken = await refreshTokens(refreshToken);
     setAuthCookie(res, 'accessToken', newAccessToken, 15 * 60 * 1000);

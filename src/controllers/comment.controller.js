@@ -16,8 +16,7 @@ const createComment = catchAsync(async (req, res) => {
 
 // get comments
 const getComments = catchAsync(async (req, res) => {
-    const { postId } = req.body;
-    const { page, limit } = req.query;
+    const { page, limit, postId } = req.query;
     const comments = await pullComments(postId, page, limit);
     responseFn(res, 200, true, comments, "Comments retrieved successfully");
 });

@@ -16,7 +16,7 @@ const pullPosts = async (userId, page = 1, limit = 10) => {
             { isPrivate: false },
             { author: userId }
         ]
-    }).populate('author', 'firstName lastName').sort({ createdAt: -1 }).skip(skip).limit(limit).lean();
+    }).populate('author', 'firstName lastName').populate('likes', 'firstName lastName').sort({ createdAt: -1 }).skip(skip).limit(limit).lean();
     return posts;
 }
 
