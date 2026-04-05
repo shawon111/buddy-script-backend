@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // cors configuration
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ['http://localhost:3000', 'https://buddyscript-frontend-six.vercel.app'];
 
 const corsOptions = {
     origin: function (origin, callback) {
@@ -37,7 +37,7 @@ app.use('/api/auth', authroutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/reactions', reactionRoutes);
-app.use('/api/upload', uploadRoutes);
+app.use('/api/uploads', uploadRoutes);
 
 // entry route
 app.get('/', (req, res) => {

@@ -8,7 +8,7 @@ const getImageUploadSignature = (folder = 'uploads/posts') => {
     const allowed_formats = ['jpg', 'jpeg', 'png'];
     // generate signature
     const signature = cloudinary.utils.api_sign_request(
-        { timestamp, folder, resource_type, allowed_formats },
+        { timestamp, folder },
         process.env.CLOUDINARY_API_SECRET
     );
 
