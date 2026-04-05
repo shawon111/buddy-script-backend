@@ -9,7 +9,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 // cors configuration
-const allowedOrigins = ['http://localhost:3000', 'https://buddyscript-frontend-six.vercel.app'];
+const allowedOrigins = ['http://localhost:3000', 'https://buddyscript-frontend-six.vercel.app', "https://buddyscript-frontend-six.vercel.app"];
 
 const corsOptions = {
     origin: function (origin, callback) {
