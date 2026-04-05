@@ -1,7 +1,7 @@
 const setAuthCookie = (res, cookieType, tokens, age) => {
     const options = {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
+        secure: false,
         sameSite: 'lax',
         maxAge: age
     };
