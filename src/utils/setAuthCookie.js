@@ -1,8 +1,8 @@
 const setAuthCookie = (res, cookieType, tokens, age) => {
     const options = {
         httpOnly: true,
-        secure: false,
-        sameSite: 'lax',
+        secure: true,
+        sameSite: 'none',
         maxAge: age
     };
     res.cookie(cookieType, tokens[cookieType], options);
